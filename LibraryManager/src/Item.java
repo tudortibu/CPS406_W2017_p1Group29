@@ -92,6 +92,7 @@ public class Item {
 	 
 
 	 public void printItemData(){
+		 System.out.println("Writing out <Key, Value> pairs for Item with the Serial Number: " + this.CategoryDictionary.get("serialNumber") );	
 		 for(String i : CategoryDictionary.keySet()){
 		 		System.out.println("Key: " + i + " Value: " + this.CategoryDictionary.get(i) );
 		 	} 

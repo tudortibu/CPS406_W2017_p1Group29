@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  * 
  * @author Tudor
@@ -8,7 +10,9 @@ public class Library {
 
 	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
-      
-      
+		DbManager itemDbManager = new DbManager("src/ItemDb.csv");
+		DbManager clientDbManager = new DbManager("src/ClientDb.csv");
+		HashMap<String, Item> itemDirectory = itemDbManager.readItemDb();
+		
 	}
 }
