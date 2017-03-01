@@ -1,6 +1,6 @@
-import java.security.KeyException;
+
 import java.util.HashMap;
-import java.util.HashSet;
+
 
 /**
  * 
@@ -80,7 +80,7 @@ public class Item {
 	  * @param key the key requested
 	  * @param change the value you wish to change the value of the <key, value> pair too
 	  */
-	 public void SetInfo(String key, String change ){
+	 public void setInfo(String key, String change ){
 		 if(this.CategoryDictionary.containsKey(key)){
 			  this.CategoryDictionary.put(key, change);
 			}else{
@@ -90,4 +90,17 @@ public class Item {
 	 
 	 }
 	 
+
+	 public void printItemData(){
+		 for(String i : CategoryDictionary.keySet()){
+		 		System.out.println("Key: " + i + " Value: " + this.CategoryDictionary.get(i) );
+		 	} 
+		 
+	 }
+
+
+
+
+
 }
+
