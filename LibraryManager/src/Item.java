@@ -1,23 +1,29 @@
 
-import java.util.HashMap;
 
 
 /**
  * 
- * @author Tudor
- * This is the item manager class
  * 
+ * This is the item object class.
+ * The class is used to define the properties of an item
+ * @author tudor.tibu@ryerson.ca
+ *  If anything is confusing please feel free to email me.
  */
 public class Item {
 
-  HashMap<String, String> CategoryDictionary = new HashMap();
-	 
+
+	String serialNumber;
+	String type;
+	String title;
+	String artist;
+	String year;
+	String album;
+	String location;
+	
 	/**
 	 * Constructor for empty item class
 	 */
-	public Item( ){
-			
-		
+	public Item( ){		
 	}
 /**
  * 
@@ -31,73 +37,59 @@ public class Item {
  */
 	public Item (String serialNumber, String type, String title, String artist, String album, String year, String location  ){
 		this();
-		this.CategoryDictionary.put( "serialNumber", serialNumber);
-		this.CategoryDictionary.put("type", type);
-		this.CategoryDictionary.put("title", title );
-		this.CategoryDictionary.put("artist", artist);
-		this.CategoryDictionary.put("album", album);
-		this.CategoryDictionary.put("year", year);
-		this.CategoryDictionary.put("location",location);
-		
-		//updateDictionary();
-	}
-
+		this.serialNumber = serialNumber;
+		this.type = type;
+		this.title =title ;
+		this.artist =artist;
+		this.album = album;
+		this.year =year;
+		this.location =location;
 	
-	/**
-	 * This method is for debugging purposes
-	 * @return An array of the CategoryDictionary Key,Value pairs
-	 */
-	 public String[] getAllInfo(){
-		 String[] info = new String [CategoryDictionary.keySet().size()];
-		 int x = 0;
-		 for(String i : CategoryDictionary.keySet()){
-			 info [x] = i + " " + CategoryDictionary.get(i) ;
-		 x++;
-		 }
-	 return info;
-	 }
+	}
+	
+public String getSerialNumber() {
+	return serialNumber;
+}
+public void setSerialNumber(String serialNumber) {
+	this.serialNumber = serialNumber;
+}
+public String getType() {
+	return type;
+}
+public void setType(String type) {
+	this.type = type;
+}
+public String getTitle() {
+	return title;
+}
+public void setTitle(String title) {
+	this.title = title;
+}
+public String getArtist() {
+	return artist;
+}
+public void setArtist(String artist) {
+	this.artist = artist;
+}
+public String getYear() {
+	return year;
+}
+public void setYear(String year) {
+	this.year = year;
+}
+public String getAlbum() {
+	return album;
+}
+public void setAlbum(String album) {
+	this.album = album;
+}
+public String getLocation() {
+	return location;
+}
+public void setLocation(String location) {
+	this.location = location;
+}
 
-	 
-	 /**
-	  * Checks if key part of the  CategoryDictionary keySet then returns the value of that key
-	  * @param key the key requested
-	  * @return returns the value of the requested category 
-	  */
-	 public String getInfo(String key) {
-		 String info = " ";
-		if(this.CategoryDictionary.containsKey(key)){
-		 info = this.CategoryDictionary.get(key);
-		}else{
-			
-			System.out.println("the string " + key + " is not found in the keySet of CategoryDictionary");
-		}
-		return info;
-	 }
-	 
-	 
-	 /**
-	  *  Change the value from the <key, value> pair of CategoryDictionary
-	  * @param key the key requested
-	  * @param change the value you wish to change the value of the <key, value> pair too
-	  */
-	 public void setInfo(String key, String change ){
-		 if(this.CategoryDictionary.containsKey(key)){
-			  this.CategoryDictionary.put(key, change);
-			}else{
-				
-				System.out.println("the string " + key + " is not found in the keySet of CategoryDictionary");
-			}
-	 
-	 }
-	 
-
-	 public void printItemData(){
-		 System.out.println("Writing out <Key, Value> pairs for Item with the Serial Number: " + this.CategoryDictionary.get("serialNumber") );	
-		 for(String i : CategoryDictionary.keySet()){
-		 		System.out.println("Key: " + i + " Value: " + this.CategoryDictionary.get(i) );
-		 	} 
-		 
-	 }
 
 
 
