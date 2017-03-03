@@ -12,6 +12,7 @@ public class Client {
 String FirstName;
 String LastName;
 String ClientID;
+String eMail;
 ArrayList<Item> itemsLoaned;
 public Client(){
 	
@@ -22,10 +23,11 @@ public Client(){
  * @param Fname the First name of a client
  * @param Lname the last name of a client
  */
-public Client(String ID, String Fname, String Lname){
+public Client(String ID, String Fname, String Lname, String eMail){
 	this.itemsLoaned = new ArrayList();
 	this.ClientID = ID;
 	this.FirstName = Fname;
+	this.eMail = eMail;
 	this.LastName= Lname;
 }
 
@@ -56,7 +58,12 @@ public void setClientID(String clientID) {
 public ArrayList<Item> getItemsLoaned() {
 	return itemsLoaned;
 }
-
+public String getEmail(){
+	return eMail;
+}
+public void setEmail(String email){
+	this.eMail = email;
+}
 
 /**
  * makes the client loan an it if the item is  loanable.

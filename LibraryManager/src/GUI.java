@@ -65,6 +65,8 @@ public class GUI {
 
 	ItemDbManager itemDb;
 	ClientDbManager clientDb;
+	private JTextField txtEmailSubmit;
+	private JTextField txtEmailSearch;
 
 	/**
 	 * Create the application.
@@ -414,9 +416,9 @@ public class GUI {
 		frame.getContentPane().add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel lblNewLabel = new JLabel("Client Info");
@@ -532,6 +534,23 @@ public class GUI {
 		panel_1.add(txtLoanedSearch, gbc_txtLoanedSearch);
 		txtLoanedSearch.setColumns(10);
 		
+		JLabel lblEmailSearch = new JLabel("e-Mail");
+		GridBagConstraints gbc_lblEmailSearch = new GridBagConstraints();
+		gbc_lblEmailSearch.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEmailSearch.gridx = 1;
+		gbc_lblEmailSearch.gridy = 9;
+		panel_1.add(lblEmailSearch, gbc_lblEmailSearch);
+		
+		txtEmailSearch = new JTextField();
+		txtEmailSearch.setEditable(false);
+		GridBagConstraints gbc_txtEmailSearch = new GridBagConstraints();
+		gbc_txtEmailSearch.insets = new Insets(0, 0, 5, 5);
+		gbc_txtEmailSearch.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtEmailSearch.gridx = 1;
+		gbc_txtEmailSearch.gridy = 10;
+		panel_1.add(txtEmailSearch, gbc_txtEmailSearch);
+		txtEmailSearch.setColumns(10);
+		
 		JLabel lblAddAClient = new JLabel("Add  a Client");
 		GridBagConstraints gbc_lblAddAClient = new GridBagConstraints();
 		gbc_lblAddAClient.insets = new Insets(0, 0, 5, 5);
@@ -607,6 +626,7 @@ public class GUI {
 		gbc_btnClientSubmit.gridy = 18;
 		panel_1.add(btnClientSubmit, gbc_btnClientSubmit);
 		
+		
 		JLabel lblClientInvalid = new JLabel("");
 		lblClientInvalid.setForeground(Color.RED);
 		GridBagConstraints gbc_lblClientInvalid = new GridBagConstraints();
@@ -614,6 +634,23 @@ public class GUI {
 		gbc_lblClientInvalid.gridx = 3;
 		gbc_lblClientInvalid.gridy = 19;
 		panel_1.add(lblClientInvalid, gbc_lblClientInvalid);
+		
+		JLabel lblEmailSubmit = new JLabel("e-Mail");
+		GridBagConstraints gbc_lblEmailSubmit = new GridBagConstraints();
+		gbc_lblEmailSubmit.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEmailSubmit.gridx = 1;
+		gbc_lblEmailSubmit.gridy = 20;
+		panel_1.add(lblEmailSubmit, gbc_lblEmailSubmit);
+		
+		txtEmailSubmit = new JTextField();
+		GridBagConstraints gbc_txtEmailSubmit = new GridBagConstraints();
+		gbc_txtEmailSubmit.insets = new Insets(0, 0, 0, 5);
+		gbc_txtEmailSubmit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtEmailSubmit.gridx = 1;
+		gbc_txtEmailSubmit.gridy = 21;
+		panel_1.add(txtEmailSubmit, gbc_txtEmailSubmit);
+		txtEmailSubmit.setColumns(10);
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(211, 211, 211));
@@ -736,7 +773,7 @@ public void actionPerformed(ActionEvent e) {
 					txtFnameSearch.setText(client.getFirstName());
 					txtLnameSearch.setText(client.getLastName());
 					txtLoanedSearch.setText(String.valueOf((client.itemsLoaned.size())));
-				
+					txtEmailSearch.setText(client.getEmail());
 					
 					txtClientName.setText(client.getFirstName() + " " + client.getLastName());
 					for(int i =0; i<client.getItemsLoaned().size(); i++){
@@ -764,11 +801,12 @@ public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == btnClientSubmit){
 					System.out.println("Client Submit button was pressed");
 					lblClientInvalid.setText(" ");
-					String [] info = new String [3];
+					String [] info = new String [4];
 					info[0] = txtClientIDSubmit.getText();
 					info[1] = txtFnameSubmit.getText();
 					info[2] = txtLnameSubmit.getText();
-					for(int i = 0; i< 3; i++){
+					info[3] = txtEmailSubmit.getText();
+					for(int i = 0; i< 4; i++){
 						if(info[i].isEmpty()){ 
 							info[0] ="false";
 							break;
@@ -778,13 +816,12 @@ public void actionPerformed(ActionEvent e) {
 						System.out.println("Invalid Entry");
 						lblClientInvalid.setText("Invalid Entry");	
 					}else{
-						Client newEntry = new Client(info[0], info[1], info[2] );
+						Client newEntry = new Client(info[0], info[1], info[2], info[3] );
 						clientDb.addEntry(newEntry);
 					}
 				}
 			}
-		});
-
+		});	
 		
 		
 		

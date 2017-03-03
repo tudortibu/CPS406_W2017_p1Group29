@@ -29,11 +29,11 @@ public class ClientDbManager extends DbManager {
 			while ((this.line = this.br.readLine()) != null) {
 				String array[] = this.line.split(cvsSplitBy);
 
-				if (array.length < 3) {
+				if (array.length < 4) {
 					System.out.println("Error Reading Line" + this.line);
 					System.out.println("Incorrect File Format");
 				} else {
-					Client client = new Client(array[0], array[1], array[2]);
+					Client client = new Client(array[0], array[1], array[2], array[4]);
 					map.put(array[0], client);
 				}
 
